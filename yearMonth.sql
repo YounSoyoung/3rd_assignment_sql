@@ -12,7 +12,7 @@ ORDER BY createDate ASC
 );
 
 SELECT yearMonth AS 년월,
-		COUNT(DISTINCT userID) AS 접속자수
+	COUNT(DISTINCT userID) AS 접속자수
 FROM statistc.month
 GROUP BY yearMonth
 ORDER BY yearMonth ASC;
