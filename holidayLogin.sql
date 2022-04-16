@@ -1,16 +1,19 @@
 CREATE table statistc.holiday(
-      holiday varchar(10)
+      hMonth varchar(5),
+      hDate varchar(5)
 );
 
-INSERT INTO statistc.holiday(holiday)
-VALUES('200622'),('200702');
+INSERT INTO statistc.holiday(hMonth, hDate)
+VALUES('06', '22'),
+('07', '02');
 
 WITH hdLogin AS (
 SELECT SUBSTR(createDate, 1, 6) AS createDate,
 		userID AS userID,
     requestCode AS requestCode
 FROM statistc.requestInfo
-WHERE SUBSTR(createDate, 1, 6) NOT IN (SELECT holiday FROM statistc.holiday)
+WHERE SUBSTR(createDate, 3, 2) NOT IN (SELECT hMonth FROM statistc.holiday) and
+      SUBSTR(createDate, 5, 2) NOT IN (SELECT hDate FROM statistc.holiday)
 )
 
 SELECT createDate AS LoginDate,
