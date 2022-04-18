@@ -1,12 +1,14 @@
-CREATE table statistc.yearmonthDate(
-SELECT SUBSTR(createDate, 1, 6) AS yearmonthDate, userID AS userID
-FROM statistc.requestInfo
-GROUP BY createDate
-ORDER BY createDate ASC
-);
-
-SELECT yearmonthDate as 접속날짜,
-	COUNT(DISTINCT userID) as 접속자수
-FROM statistc.yearmonthDate
+SELECT yearmonthDate AS 접속날짜,
+		COUNT(DISTINCT userID) AS 접속자수
+FROM(
+SELECT SUBSTR(createDate, 1, 6) AS yearmonthDate,
+		userID AS userID
+FROM statistc.requestInfo) AS accessCnt
 GROUP BY yearmonthDate
 ORDER BY yearmonthDate ASC;
+
+
+
+
+
+
