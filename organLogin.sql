@@ -19,6 +19,6 @@ SELECT SUBSTR(createDate, 1, 4) AS LoginDate,
         HR_ORGAN as HR_ORGAN
 FROM (SELECT sr.createDate, sr.userID, sr.requestCode, su.HR_ORGAN
 FROM statistc.requestInfo AS sr INNER JOIN statistc.user AS su
-ON sr.userID = su.userID) AS organLogin) AS organ
-GROUP BY HR_ORGAN
-HAVING HR_ORGAN = 'A' AND LoginDate = 2006;
+ON sr.userID = su.userID WHERE requestCode = 'L') AS organLogin) AS organ
+WHERE HR_ORGAN = 'A' AND LoginDate = 2006
+GROUP BY HR_ORGAN;
